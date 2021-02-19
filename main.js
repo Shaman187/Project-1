@@ -10,9 +10,9 @@
 
 
 
+
+
 // Make buttons to choose slots for player choices
-
-
 
 // Make play game button
 
