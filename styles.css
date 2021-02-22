@@ -2,7 +2,7 @@
 
 /* .player2 */
 
-.grid-container {
+/* .grid-container {
   display: grid;
   grid-template-columns: repeat(7, 60px);
   grid-template-rows: repeat(6, 60px);
@@ -12,12 +12,12 @@
   border: 10px black;
   width: 520px;
   height: 480px;
-};
+}; */
 
-.button {
+/* .button {
     margin-top: 60px;
     line-height: 40px;
   font-weight: bold;
   padding: 0 80px;
-}
+} */
 

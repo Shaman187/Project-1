@@ -42,7 +42,6 @@ let body = document.getElementsByTagName("body")[0];
 body.appendChild(button);
 
 button.addEventListener ("click", function() {
-  alert("Connect Four!");
 });
 
   // Play BG music when 'Play Game' button is clicked
