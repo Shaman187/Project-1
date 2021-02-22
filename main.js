@@ -31,13 +31,11 @@ button.innerHTML = "Play Game";
 let body = document.getElementsByTagName("body")[0];
 body.appendChild(button);
 
+// Play BG music when 'Play Game' button is clicked
 button.addEventListener ("click", function() {
   alert("Connect Four!");
 });
 
-// Play BG music when 'Play Game' button is clicked
-
-// onclick
 
 
 // Make Win/Lose/Draw message box
