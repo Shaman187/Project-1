@@ -1,12 +1,6 @@
-.board {
-    border: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    height: 220px;
-    width: 240px;
-};
-
-.board div {
-    height: 40px;
-    width: 40px;
+button {
+    margin-top: -60px;
+    line-height: 40px;
+  font-weight: bold;
+  padding: 0 80px;
 }

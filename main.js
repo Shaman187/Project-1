@@ -1,10 +1,14 @@
 /*----- constants -----*/
 
+
 /*----- app's state (variables) -----*/
+
 
 /*----- cached element references -----*/
 
+
 /*----- event listeners -----*/
+
 
 /*----- functions -----*/
 
@@ -12,13 +16,29 @@
 
 
 
+// Add event listeners for buttons/gameboard
 // Make buttons to choose slots for player choices
+
+
+// addEventListener
+
 
 // Make play game button
 
+const button = document.createElement("button");
+button.innerHTML = "Play Game";
+
+let body = document.getElementsByTagName("body")[0];
+body.appendChild(button);
+
+button.addEventListener ("click", function() {
+  alert("Connect Four!");
+});
+
 // Play BG music when 'Play Game' button is clicked
 
-// Add event listeners for buttons/gameboard
+// onclick
+
 
 // Make Win/Lose/Draw message box
 
