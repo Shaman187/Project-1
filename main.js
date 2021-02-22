@@ -1,5 +1,15 @@
 /*----- constants -----*/
 
+const players = {
+  '1': {
+    name: 'Player 1',
+    score: 0
+  },
+  '-1': {
+    name: 'Player 2',
+    score: 0
+  }
+};
 
 /*----- app's state (variables) -----*/
 
@@ -31,11 +41,11 @@ button.innerHTML = "Play Game";
 let body = document.getElementsByTagName("body")[0];
 body.appendChild(button);
 
-// Play BG music when 'Play Game' button is clicked
 button.addEventListener ("click", function() {
   alert("Connect Four!");
 });
 
+  // Play BG music when 'Play Game' button is clicked
 
 
 // Make Win/Lose/Draw message box
@@ -51,4 +61,3 @@ button.addEventListener ("click", function() {
 // Init
 
 // Render 
-
