@@ -4,7 +4,7 @@
     grid-template-rows: repeat(6, 60px);
     grid-column-gap: 15px;
     grid-row-gap: 15px;
-    justify-items: center;
+    /* justify-items: center; */
     background-color: red;
     width: 520px;
     height: 440px;
@@ -42,4 +42,9 @@
 
 h1 {
     display: inline-block;
+}
+
+.GameButton {
+    position:relative;
+    left: 600px;
 }
