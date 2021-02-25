@@ -25,7 +25,7 @@ let board = [
 ];
 
 /*----- cached element references -----*/
-// let 
+
 
 /*----- event listeners -----*/
 
@@ -33,53 +33,15 @@ let board = [
 /*----- functions -----*/
 
 
-
-
-
 // Add event listeners for buttons/gameboard or possibly do an event listener for
 // entire grid so that it eliminates unecessary/extra code and simplifies functions
-
-function spaceClicked(e){
-  if (e.target.className !== 'grid-item') {
-      return 
-  }
-  console.log('this is e ', e.target)  
-  let click = parseInt(e.target.id);
-  let bottomSpace = click % 7 + 35;
-  let secondSpace = click % 7 + 28;
-  let thirdSpace = click % 7 + 21;
-  let fourthSpace = click % 7 + 14;
-  let fifthSpace = click % 7 + 7;
-  let topSpace = click % 7;
-  if (board[Math.floor(bottomSpace / 7)][bottomSpace % 7] == 0){
-    board[Math.floor(bottomSpace / 7)][bottomSpace % 7] = 1;
-  } else if(grid[Math.floor(secondSpace / 7)][secondSpace % 7] == 0){
-    board[Math.floor(secondSpace / 7)][secondSpace % 7] = 1;
-  } else if(grid[Math.floor(thirdSpace / 7)][thirdSpace % 7] == 0){
-    board[Math.floor(thirdSpace / 7)][thirdSpace % 7] = 1;
-  } else if(grid[Math.floor(fourthSpace / 7)][fourthSpace % 7] == 0){
-    board[Math.floor(fourthSpace / 7)][fourthSpace % 7] = 1;
-  } else if(grid[Math.floor(fifthSpace / 7)][fifthSpace % 7] == 0){
-    board[Math.floor(fifthSpace / 7)][fifthSpace % 7] = 1;
-  } else if(grid[Math.floor(topSpace / 7)][topSpace % 7] == 0){
-    board[Math.floor(topSpace / 7)][topSpace % 7] = 1;
-  } else {
-    alert('SELECTION NOT VALID')
-  }
-}
-// console.log(grid);
-// console.log(Math.floor(bottomSpace / 7));
-// console.log(grid[bottomSpace / 7])
 
 // addEventListeners as I add functions
 
 // Play BG music when 'Play Game' button is clicked - Icebox
 
 // Make Win/Lose/Draw message box
-
 // Make current turn/player message box
-
-// Make invisible bottom row of divs for rest of the pieces to start on | Get this done ASAP | changing this
 
 // Check for Win/Lose/Draw after each piece is placed aka win logic | basically done(want to display win message)
 
@@ -99,7 +61,7 @@ playGameButton.addEventListener("click", function() {
 
 // make function to sort out win logic and check for a winner as the game progresses
 
-// code result displayed for player 2 winning
+// code result displayed for player winning
 
 // write code for event listener to check the winner after each piece is chosen
 
@@ -108,15 +70,19 @@ playGameButton.addEventListener("click", function() {
 // Init
 
 function init(){
-  let board = [
-    [0,0,0,0,0,0,0], 
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0]
-  ];
+  
+  let board = document.querySelector(".grid-container");
+  board.addEventListener("click", spaceClicked);
 
+  board = [
+      [0,0,0,0,0,0,0], 
+      [0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0]
+  ];
+  
   const players = {
     "1": {
       name: "Player 1",
@@ -127,7 +93,6 @@ function init(){
       score: 0
     }
   };
-
 };
 
 init();
@@ -149,6 +114,37 @@ function render(){
       }
     })
   })
-}
+};
 
-render()
+function spaceClicked(e){
+  if (e.target.className !== "grid-item") {
+    return 
+  }
+  console.log('this is e ', e.target)  
+  
+  let click = parseInt(e.target.id);
+  let bottomSpace = click % 7 + 35;
+  let secondSpace = click % 7 + 28;
+  let thirdSpace = click % 7 + 21;
+  let fourthSpace = click % 7 + 14;
+  let fifthSpace = click % 7 + 7;
+  let topSpace = click % 7;
+  
+  if (board[Math.floor(bottomSpace / 7)][bottomSpace % 7] == 0){
+    board[Math.floor(bottomSpace / 7)][bottomSpace % 7] == 1;
+  } else if(board[Math.floor(secondSpace / 7)][secondSpace % 7] == 0){
+    board[Math.floor(secondSpace / 7)][secondSpace % 7] == 1;
+  } else if(board[Math.floor(thirdSpace / 7)][thirdSpace % 7] == 0){
+    board[Math.floor(thirdSpace / 7)][thirdSpace % 7] == 1;
+  } else if(board[Math.floor(fourthSpace / 7)][fourthSpace % 7] == 0){
+    board[Math.floor(fourthSpace / 7)][fourthSpace % 7] == 1;
+  } else if(board[Math.floor(fifthSpace / 7)][fifthSpace % 7] == 0){
+    board[Math.floor(fifthSpace / 7)][fifthSpace % 7] == 1;
+  } else if(board[Math.floor(topSpace / 7)][topSpace % 7] == 0){
+    board[Math.floor(topSpace / 7)][topSpace % 7] == 1;
+  } else {
+    alert('SELECTION NOT VALID')
+  }
+  console.log(board);
+  render();
+};
