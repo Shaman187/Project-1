@@ -24,7 +24,7 @@
 } 
 
 .grid-item:hover {
-    background-color: red;
+    background-color: red !important;
 }
 
 .player1 {

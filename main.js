@@ -108,14 +108,17 @@ function render(){
       }
     })
   });
-    if(currentPlayer === players[1].name){
-    currentPlayer = players[-1].name;
-    } else if (currentPlayer === players[-1].name){
-    currentPlayer = players[1].name; 
-  }
 };
 
 
+
+function changeTurn() {
+  if(currentPlayer === players[1].name){
+    currentPlayer = players[-1].name;
+    } else if (currentPlayer === players[-1].name){
+    currentPlayer = players[1].name;
+    } 
+};
 
 function spaceClicked(e){
   if (e.target.className !== "grid-item") {
@@ -130,7 +133,7 @@ function spaceClicked(e){
   let fourthSpace = click % 7 + 14;
   let fifthSpace = click % 7 + 7;
   let topSpace = click % 7;
-  
+  console.log(currentPlayer, "check ONE");
   if (board[Math.floor(bottomSpace / 7)][bottomSpace % 7] == 0){
     board[Math.floor(bottomSpace / 7)][bottomSpace % 7] = currentPlayer === 'Player 1' ? 1 : -1;
   } else if(board[Math.floor(secondSpace / 7)][secondSpace % 7] == 0){
@@ -147,11 +150,14 @@ function spaceClicked(e){
     alert('NOPE')
   }
   console.log(board);
+  changeTurn();
   render();
 };
 
 playGameButton.addEventListener('click', function init() {
 
+  currentPlayer = players[1].name;
+  console.log(currentPlayer, "PLAY GAME BUTTON PRESS");
   let newBoard = [
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
@@ -159,9 +165,10 @@ playGameButton.addEventListener('click', function init() {
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
-  ]; {
-      board.push(newBoard);
-  }
+  ]; 
+  
+  board = newBoard;
+  
   render();
 });
 
