@@ -1,7 +1,7 @@
 /*----- constants -----*/
 
 // console.log(players);
-const players = {
+let players = {
   "1": {
     name: "Player 1",
     score: 0
@@ -11,6 +11,7 @@ const players = {
     score: 0
   }
 };
+let currentPlayer = players;
 
 const newGameButton = document.querySelector(".gameButton");
 
@@ -53,34 +54,34 @@ playGameButton.innerHTML = "Play Game";
 let body = document.getElementsByTagName("body")[0];
 body.appendChild(playGameButton);
 
-playGameButton.addEventListener("click", function() {
+playGameButton.addEventListener("click", function(init) {
   alert("button works!");
 });
-
-// console.log(playGameButton);
-
-// make function to sort out win logic and check for a winner as the game progresses
-
-// code result displayed for player winning
-
-// write code for event listener to check the winner after each piece is chosen
-
-// Make gameboard border turn red when a winner is determined - icebox
-
-// Init
-
-function init(){
   
-  let board = document.querySelector(".grid-container");
+  // console.log(playGameButton);
+  
+  // make function to sort out win logic and check for a winner as the game progresses
+  
+  // code result displayed for player winning
+  // write code for event listener to check the winner after each piece is chosen
+  
+  // Make gameboard border turn red when a winner is determined - icebox
+  
+  
+  // Init
+  
+  function init(){
+    
+    let board = document.querySelector(".grid-container");
   board.addEventListener("click", spaceClicked);
 
   board = [
-      [0,0,0,0,0,0,0], 
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0]
+    [0,0,0,0,0,0,0], 
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0]
   ];
   
   const players = {
@@ -131,19 +132,19 @@ function spaceClicked(e){
   let topSpace = click % 7;
   
   if (board[Math.floor(bottomSpace / 7)][bottomSpace % 7] == 0){
-    board[Math.floor(bottomSpace / 7)][bottomSpace % 7] == 1;
+    board[Math.floor(bottomSpace / 7)][bottomSpace % 7] = currentPlayer === 'Player' ? 1 : -1;
   } else if(board[Math.floor(secondSpace / 7)][secondSpace % 7] == 0){
-    board[Math.floor(secondSpace / 7)][secondSpace % 7] == 1;
+    board[Math.floor(secondSpace / 7)][secondSpace % 7] = currentPlayer === 'Player' ? 1 : -1;
   } else if(board[Math.floor(thirdSpace / 7)][thirdSpace % 7] == 0){
-    board[Math.floor(thirdSpace / 7)][thirdSpace % 7] == 1;
+    board[Math.floor(thirdSpace / 7)][thirdSpace % 7] = currentPlayer === 'Player' ? 1 : -1;
   } else if(board[Math.floor(fourthSpace / 7)][fourthSpace % 7] == 0){
-    board[Math.floor(fourthSpace / 7)][fourthSpace % 7] == 1;
+    board[Math.floor(fourthSpace / 7)][fourthSpace % 7] = currentPlayer === 'Player' ? 1 : -1;
   } else if(board[Math.floor(fifthSpace / 7)][fifthSpace % 7] == 0){
-    board[Math.floor(fifthSpace / 7)][fifthSpace % 7] == 1;
+    board[Math.floor(fifthSpace / 7)][fifthSpace % 7] = currentPlayer === 'Player' ? 1 : -1;
   } else if(board[Math.floor(topSpace / 7)][topSpace % 7] == 0){
-    board[Math.floor(topSpace / 7)][topSpace % 7] == 1;
+    board[Math.floor(topSpace / 7)][topSpace % 7] = currentPlayer === 'Player' ? 1 : -1;
   } else {
-    alert('SELECTION NOT VALID')
+    alert('NOPE')
   }
   console.log(board);
   render();
