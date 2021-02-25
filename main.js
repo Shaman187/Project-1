@@ -11,7 +11,7 @@ let players = {
     score: 0
   }
 };
-let currentPlayer = players;
+
 
 const newGameButton = document.querySelector(".gameButton");
 
@@ -34,19 +34,6 @@ let board = [
 /*----- functions -----*/
 
 
-// Add event listeners for buttons/gameboard or possibly do an event listener for
-// entire grid so that it eliminates unecessary/extra code and simplifies functions
-
-// addEventListeners as I add functions
-
-// Play BG music when 'Play Game' button is clicked - Icebox
-
-// Make Win/Lose/Draw message box
-// Make current turn/player message box
-
-// Check for Win/Lose/Draw after each piece is placed aka win logic | basically done(want to display win message)
-
-// Make play game button - done |  Set button to reset board on init - work in progress
 
 let playGameButton = document.createElement("button");
 playGameButton.classList.add("gameButton");
@@ -54,26 +41,14 @@ playGameButton.innerHTML = "Play Game";
 let body = document.getElementsByTagName("body")[0];
 body.appendChild(playGameButton);
 
-playGameButton.addEventListener("click", function(init) {
-  alert("button works!");
-});
-  
-  // console.log(playGameButton);
-  
-  // make function to sort out win logic and check for a winner as the game progresses
-  
-  // code result displayed for player winning
-  // write code for event listener to check the winner after each piece is chosen
-  
-  // Make gameboard border turn red when a winner is determined - icebox
-  
-  
-  // Init
-  
-  function init(){
-    
-    let board = document.querySelector(".grid-container");
-  board.addEventListener("click", spaceClicked);
+
+
+// console.log(playGameButton);
+
+playGameButton.addEventListener("click", function reset(){
+  currentPlayer = players[1].name;
+  // players[1].score = 0;
+  // players[-1].score = 0;
 
   board = [
     [0,0,0,0,0,0,0], 
@@ -83,8 +58,18 @@ playGameButton.addEventListener("click", function(init) {
     [0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0]
   ];
+});
+
+
+// Init
+
+function init(){
   
-  const players = {
+  let board = document.querySelector(".grid-container");
+
+  board.addEventListener("click", spaceClicked);
+  
+  let players = {
     "1": {
       name: "Player 1",
       score: 0
@@ -94,9 +79,11 @@ playGameButton.addEventListener("click", function(init) {
       score: 0
     }
   };
-};
+}
 
 init();
+
+let currentPlayer = players[1].name;
 
 
 let rows = document.querySelectorAll("[row]");
@@ -115,7 +102,14 @@ function render(){
       }
     })
   })
+  if(currentPlayer === players[1].name){
+    currentPlayer = players[-1].name;
+  } else if (currentPlayer === players[-1].name){
+    currentPlayer = players[1].name; 
+  }
 };
+
+
 
 function spaceClicked(e){
   if (e.target.className !== "grid-item") {
@@ -132,20 +126,32 @@ function spaceClicked(e){
   let topSpace = click % 7;
   
   if (board[Math.floor(bottomSpace / 7)][bottomSpace % 7] == 0){
-    board[Math.floor(bottomSpace / 7)][bottomSpace % 7] = currentPlayer === 'Player' ? 1 : -1;
+    board[Math.floor(bottomSpace / 7)][bottomSpace % 7] = currentPlayer === 'Player 1' ? 1 : -1;
   } else if(board[Math.floor(secondSpace / 7)][secondSpace % 7] == 0){
-    board[Math.floor(secondSpace / 7)][secondSpace % 7] = currentPlayer === 'Player' ? 1 : -1;
+    board[Math.floor(secondSpace / 7)][secondSpace % 7] = currentPlayer === 'Player 1' ? 1 : -1;
   } else if(board[Math.floor(thirdSpace / 7)][thirdSpace % 7] == 0){
-    board[Math.floor(thirdSpace / 7)][thirdSpace % 7] = currentPlayer === 'Player' ? 1 : -1;
+    board[Math.floor(thirdSpace / 7)][thirdSpace % 7] = currentPlayer === 'Player 1' ? 1 : -1;
   } else if(board[Math.floor(fourthSpace / 7)][fourthSpace % 7] == 0){
-    board[Math.floor(fourthSpace / 7)][fourthSpace % 7] = currentPlayer === 'Player' ? 1 : -1;
+    board[Math.floor(fourthSpace / 7)][fourthSpace % 7] = currentPlayer === 'Player 1' ? 1 : -1;
   } else if(board[Math.floor(fifthSpace / 7)][fifthSpace % 7] == 0){
-    board[Math.floor(fifthSpace / 7)][fifthSpace % 7] = currentPlayer === 'Player' ? 1 : -1;
+    board[Math.floor(fifthSpace / 7)][fifthSpace % 7] = currentPlayer === 'Player 1' ? 1 : -1;
   } else if(board[Math.floor(topSpace / 7)][topSpace % 7] == 0){
-    board[Math.floor(topSpace / 7)][topSpace % 7] = currentPlayer === 'Player' ? 1 : -1;
+    board[Math.floor(topSpace / 7)][topSpace % 7] = currentPlayer === 'Player 1' ? 1 : -1;
   } else {
     alert('NOPE')
   }
   console.log(board);
   render();
 };
+// Add event listeners for buttons/gameboard or possibly do an event listener for
+// entire grid so that it eliminates unecessary/extra code and simplifies functions  
+// addEventListeners as I add functions  
+// Play BG music when 'Play Game' button is clicked - Icebox
+// Make Win/Lose/Draw message box
+// Make current turn/player message box    
+// Check for Win/Lose/Draw after each piece is placed aka win logic | basically done(want to display win message)   
+// Make play game button - done |  Set button to reset board on init - work in progress
+// make function to sort out win logic and check for a winner as the game progresses  
+// code result displayed for player winning
+// write code for event listener to check the winner after each piece is chosen     
+// Make gameboard border turn red when a winner is determined - icebox
