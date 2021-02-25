@@ -1,5 +1,5 @@
 /*----- constants -----*/
-
+boardEl = document.querySelector(".grid-container");
 // console.log(players);
 let players = {
   "1": {
@@ -34,8 +34,8 @@ let board = [
 /*----- functions -----*/
 
 
-
 let playGameButton = document.createElement("button");
+
 playGameButton.classList.add("gameButton");
 playGameButton.innerHTML = "Play Game";
 let body = document.getElementsByTagName("body")[0];
@@ -50,6 +50,7 @@ playGameButton.addEventListener("click", function reset(){
   // players[1].score = 0;
   // players[-1].score = 0;
 
+
   board = [
     [0,0,0,0,0,0,0], 
     [0,0,0,0,0,0,0],
@@ -63,11 +64,13 @@ playGameButton.addEventListener("click", function reset(){
 
 // Init
 
+init();
+
 function init(){
   
   let board = document.querySelector(".grid-container");
-
   board.addEventListener("click", spaceClicked);
+  
   
   let players = {
     "1": {
@@ -81,9 +84,9 @@ function init(){
   };
 }
 
-init();
-
 let currentPlayer = players[1].name;
+
+
 
 
 let rows = document.querySelectorAll("[row]");
@@ -99,12 +102,15 @@ function render(){
       } else if (board[i][j] == -1) {
         let idx = i * 7 + j 
         document.getElementById(`${idx}`).style.backgroundColor = 'purple';
+      } else if (board[i][j] == 0) {
+        let idx = i * 7 + j 
+        document.getElementById(`${idx}`).style.backgroundColor = 'white';
       }
     })
-  })
-  if(currentPlayer === players[1].name){
+  });
+    if(currentPlayer === players[1].name){
     currentPlayer = players[-1].name;
-  } else if (currentPlayer === players[-1].name){
+    } else if (currentPlayer === players[-1].name){
     currentPlayer = players[1].name; 
   }
 };
@@ -143,6 +149,22 @@ function spaceClicked(e){
   console.log(board);
   render();
 };
+
+playGameButton.addEventListener('click', function init() {
+
+  let newBoard = [
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+  ]; {
+      board.push(newBoard);
+  }
+  render();
+});
+
 // Add event listeners for buttons/gameboard or possibly do an event listener for
 // entire grid so that it eliminates unecessary/extra code and simplifies functions  
 // addEventListeners as I add functions  
