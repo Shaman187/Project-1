@@ -4,13 +4,14 @@
     grid-template-rows: repeat(6, 60px);
     grid-column-gap: 15px;
     grid-row-gap: 15px;
-    /* justify-items: center; */
     background-color: red;
     width: 520px;
     height: 440px;
     margin: auto;
     position: relative;
     top: 200px;
+    border-radius: 13px;
+    padding: 15px;
 }
 
 .grid-item{
@@ -21,6 +22,9 @@
     box-shadow: 1.75px 2px 1.5px 1px black;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
     text-align: center;
 } 
+.grid-item:hover {
+    background-color:black;
+}
 
 .player1 {
     background-color: green;
@@ -28,7 +32,7 @@
     width: 120px;
     position: relative;
     left: 475px;
-    top: 100px;
+    top: 200px;
 }
     
 .player2 {
@@ -37,14 +41,15 @@
     width: 120px;
     position: relative;
     left: 1200px;
-    top: 100px;
+    top: 200px;
 }
 
 h1 {
     display: inline-block;
 }
 
-.GameButton {
+.gameButton {
     position:relative;
-    left: 600px;
+    left: 910px;
+    top: 250px;
 }

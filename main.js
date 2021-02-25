@@ -12,6 +12,7 @@ const players = {
   }
 };
 
+const newGameButton = document.querySelector(".gameButton");
 
 /*----- app's state (variables) -----*/
 let board = [
@@ -21,7 +22,7 @@ let board = [
   [0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0]
-]
+];
 
 /*----- cached element references -----*/
 // let 
@@ -50,33 +51,29 @@ function spaceClicked(e){
   let fourthSpace = click % 7 + 14;
   let fifthSpace = click % 7 + 7;
   let topSpace = click % 7;
-  // console.log(Math.floor(bottomSpace / 7));
-  // console.log(grid[bottomSpace / 7])
-  if (grid[Math.floor(bottomSpace / 7)][bottomSpace % 7] == 0){
-      grid[Math.floor(bottomSpace / 7)][bottomSpace % 7] = 1;
+  if (board[Math.floor(bottomSpace / 7)][bottomSpace % 7] == 0){
+    board[Math.floor(bottomSpace / 7)][bottomSpace % 7] = 1;
   } else if(grid[Math.floor(secondSpace / 7)][secondSpace % 7] == 0){
-      grid[Math.floor(secondSpace / 7)][secondSpace % 7] = 1;
+    board[Math.floor(secondSpace / 7)][secondSpace % 7] = 1;
   } else if(grid[Math.floor(thirdSpace / 7)][thirdSpace % 7] == 0){
-      grid[Math.floor(thirdSpace / 7)][thirdSpace % 7] = 1;
+    board[Math.floor(thirdSpace / 7)][thirdSpace % 7] = 1;
   } else if(grid[Math.floor(fourthSpace / 7)][fourthSpace % 7] == 0){
-      grid[Math.floor(fourthSpace / 7)][fourthSpace % 7] = 1;
+    board[Math.floor(fourthSpace / 7)][fourthSpace % 7] = 1;
   } else if(grid[Math.floor(fifthSpace / 7)][fifthSpace % 7] == 0){
-      grid[Math.floor(fifthSpace / 7)][fifthSpace % 7] = 1;
+    board[Math.floor(fifthSpace / 7)][fifthSpace % 7] = 1;
   } else if(grid[Math.floor(topSpace / 7)][topSpace % 7] == 0){
-      grid[Math.floor(topSpace / 7)][topSpace % 7] = 1;
+    board[Math.floor(topSpace / 7)][topSpace % 7] = 1;
   } else {
-      alert('SELECTION NOT VALID')
+    alert('SELECTION NOT VALID')
   }
-  console.log(grid)
 }
+// console.log(grid);
 // console.log(Math.floor(bottomSpace / 7));
 // console.log(grid[bottomSpace / 7])
-
 
 // addEventListeners as I add functions
 
 // Play BG music when 'Play Game' button is clicked - Icebox
-
 
 // Make Win/Lose/Draw message box
 
@@ -86,33 +83,72 @@ function spaceClicked(e){
 
 // Check for Win/Lose/Draw after each piece is placed aka win logic | basically done(want to display win message)
 
+// Make play game button - done |  Set button to reset board on init - work in progress
 
-// Make play game button - done |  Set button to reset board on init
-
-const playGameButton = document.createElement("button");
-playGameButton.className = "gameButton";
+let playGameButton = document.createElement("button");
+playGameButton.classList.add("gameButton");
 playGameButton.innerHTML = "Play Game";
 let body = document.getElementsByTagName("body")[0];
 body.appendChild(playGameButton);
 
 playGameButton.addEventListener("click", function() {
-  alert("Button Works!");
+  alert("button works!");
 });
 
 // console.log(playGameButton);
 
-// make function to sort out win logic and check for a winner as the game progresses | done(needs result to be shown)
+// make function to sort out win logic and check for a winner as the game progresses
 
 // code result displayed for player 2 winning
 
-
 // write code for event listener to check the winner after each piece is chosen
 
-// Make gameboard border turn red when a winner is determined
+// Make gameboard border turn red when a winner is determined - icebox
 
 // Init
 
-// function init()
+function init(){
+  let board = [
+    [0,0,0,0,0,0,0], 
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0]
+  ];
 
-// Render() 
+  const players = {
+    "1": {
+      name: "Player 1",
+      score: 0
+    },
+    "-1": {
+      name: "Player 2",
+      score: 0
+    }
+  };
 
+};
+
+init();
+
+
+let rows = document.querySelectorAll("[row]");
+let columns = document.querySelectorAll("[column]");
+
+function render(){
+  // console.log(rows)
+  // console.log(columns)
+  board.forEach(function (rows, i){
+    rows.forEach(function (columns, j){
+      if(board[i][j] == 1) {let idx = i * 7 + j;
+        document.getElementById(`${idx}`).style.backgroundColor = 'green';
+      } else if (board[i][j] == -1) {
+        let idx = i * 7 + j 
+        document.getElementById(`${idx}`).style.backgroundColor = 'purple';
+      }
+    })
+  })
+}
+
+render()
