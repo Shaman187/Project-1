@@ -1,6 +1,5 @@
 /*----- constants -----*/
 boardEl = document.querySelector(".grid-container");
-// console.log(players);
 let players = {
   "1": {
     name: "Player 1",
@@ -40,7 +39,7 @@ body.appendChild(playGameButton);
 
 playGameButton.addEventListener("click", function reset(){
   currentPlayer = players[1].name;
-
+  
   board = [
     [0,0,0,0,0,0,0], 
     [0,0,0,0,0,0,0],
@@ -190,11 +189,12 @@ function checkWinner(bd) {
 
 
 
-// console.log(rows)
+// console.log(rows);
 // console.log(board);
-// console.log(columns)
+// console.log(columns);
+// console.log(players);
 // console.log(playGameButton);
-// console.log('this is e ', e.target)  
+// console.log('this is e ', e.target); 
 // console.log(currentPlayer, "check ONE");
 // console.log(currentPlayer, "PLAY GAME BUTTON PRESS");
 // Add event listeners for buttons/gameboard or possibly do an event listener for
