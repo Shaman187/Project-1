@@ -20,7 +20,7 @@ Wiki: https://en.wikipedia.org/wiki/Connect_Four
 - Basic game implementation with the rules described above.
 - Can click a button to start a new game.
 - Can play against another human.
-- Must use a combination of HTML, CSS and JavaScript.
+- Uses a combination of HTML, CSS and JavaScript.
 
 ### Implementation
 
