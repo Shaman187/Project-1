@@ -15,12 +15,17 @@ Wiki: https://en.wikipedia.org/wiki/Connect_Four
 - The checkers fall all the way down to the bottom of the column they are put in Core.
 
 
-### Requirements
+### Features
 
 - Basic game implementation with the rules described above.
 - Can click a button to start a new game.
 - Can play against another human.
 - Uses a combination of HTML, CSS and JavaScript.
+
+### Additions I'd like to make
+- Win/Lose amount per player
+- Current player turn display
+- Have a border around the board that changes colour when a win is made
 
 ### Implementation
 
