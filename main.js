@@ -1,5 +1,5 @@
 /*----- constants -----*/
-
+boardEl = document.querySelector(".grid-container");
 // console.log(players);
 let players = {
   "1": {
@@ -11,7 +11,6 @@ let players = {
     score: 0
   }
 };
-
 
 const newGameButton = document.querySelector(".gameButton");
 
@@ -26,16 +25,11 @@ let board = [
 ];
 
 /*----- cached element references -----*/
-
-
 /*----- event listeners -----*/
-
-
 /*----- functions -----*/
 
-
-
 let playGameButton = document.createElement("button");
+
 playGameButton.classList.add("gameButton");
 playGameButton.innerHTML = "Play Game";
 let body = document.getElementsByTagName("body")[0];
@@ -43,12 +37,9 @@ body.appendChild(playGameButton);
 
 
 
-// console.log(playGameButton);
 
 playGameButton.addEventListener("click", function reset(){
   currentPlayer = players[1].name;
-  // players[1].score = 0;
-  // players[-1].score = 0;
 
   board = [
     [0,0,0,0,0,0,0], 
@@ -63,11 +54,13 @@ playGameButton.addEventListener("click", function reset(){
 
 // Init
 
+init();
+
 function init(){
   
   let board = document.querySelector(".grid-container");
-
   board.addEventListener("click", spaceClicked);
+  
   
   let players = {
     "1": {
@@ -81,17 +74,11 @@ function init(){
   };
 }
 
-init();
-
 let currentPlayer = players[1].name;
-
-
 let rows = document.querySelectorAll("[row]");
 let columns = document.querySelectorAll("[column]");
 
 function render(){
-  // console.log(rows)
-  // console.log(columns)
   board.forEach(function (rows, i){
     rows.forEach(function (columns, j){
       if(board[i][j] == 1) {let idx = i * 7 + j;
@@ -99,23 +86,30 @@ function render(){
       } else if (board[i][j] == -1) {
         let idx = i * 7 + j 
         document.getElementById(`${idx}`).style.backgroundColor = 'purple';
+      } else if (board[i][j] == 0) {
+        let idx = i * 7 + j 
+        document.getElementById(`${idx}`).style.backgroundColor = 'white';
       }
     })
-  })
-  if(currentPlayer === players[1].name){
-    currentPlayer = players[-1].name;
-  } else if (currentPlayer === players[-1].name){
-    currentPlayer = players[1].name; 
-  }
+  });
 };
 
 
+
+function changeTurn() {
+  if(currentPlayer === players[1].name){
+    currentPlayer = players[-1].name;
+    checkWinner(board);
+  } else if (currentPlayer === players[-1].name){
+    currentPlayer = players[1].name;
+    checkWinner(board);
+  } 
+};
 
 function spaceClicked(e){
   if (e.target.className !== "grid-item") {
     return 
   }
-  console.log('this is e ', e.target)  
   
   let click = parseInt(e.target.id);
   let bottomSpace = click % 7 + 35;
@@ -124,7 +118,6 @@ function spaceClicked(e){
   let fourthSpace = click % 7 + 14;
   let fifthSpace = click % 7 + 7;
   let topSpace = click % 7;
-  
   if (board[Math.floor(bottomSpace / 7)][bottomSpace % 7] == 0){
     board[Math.floor(bottomSpace / 7)][bottomSpace % 7] = currentPlayer === 'Player 1' ? 1 : -1;
   } else if(board[Math.floor(secondSpace / 7)][secondSpace % 7] == 0){
@@ -140,9 +133,70 @@ function spaceClicked(e){
   } else {
     alert('NOPE')
   }
-  console.log(board);
+  changeTurn();
   render();
+  
+  let winner = checkWinner(board)
+  if (winner == 1 || winner == -1) {
+    alert("You have won!");
+  }
 };
+
+
+playGameButton.addEventListener('click', function init() {
+  
+  currentPlayer = players[1].name;
+  let newBoard = [
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+  ]; 
+  
+  board = newBoard;
+  
+  render();
+});
+
+function checkLine(a, b, c, d) {
+  // Check first cell non-zero and all cells match
+  return ((a != 0) && (a == b) && (a == c) && (a == d));
+}
+function checkWinner(bd) {
+  // Check down
+  for (r = 0; r < 3; r++)
+  for (c = 0; c < 7; c++)
+  if (checkLine(bd[r][c], bd[r + 1][c], bd[r + 2][c], bd[r + 3][c]))
+  return bd[r][c];
+  // Check right
+  for (r = 0; r < 6; r++)
+  for (c = 0; c < 4; c++)
+  if (checkLine(bd[r][c], bd[r][c + 1], bd[r][c + 2], bd[r][c + 3]))
+  return bd[r][c];
+  // Check down-right
+  for (r = 0; r < 3; r++)
+  for (c = 0; c < 4; c++)
+  if (checkLine(bd[r][c], bd[r + 1][c + 1], bd[r + 2][c + 2], bd[r + 3][c + 3]))
+  return bd[r][c];
+  // Check down-left
+  for (r = 3; r < 6; r++)
+  for (c = 0; c < 4; c++)
+  if (checkLine(bd[r][c], bd[r - 1][c + 1], bd[r - 2][c + 2], bd[r - 3][c + 3]))
+  return bd[r][c];
+  return 0;
+};
+
+
+
+// console.log(rows)
+// console.log(board);
+// console.log(columns)
+// console.log(playGameButton);
+// console.log('this is e ', e.target)  
+// console.log(currentPlayer, "check ONE");
+// console.log(currentPlayer, "PLAY GAME BUTTON PRESS");
 // Add event listeners for buttons/gameboard or possibly do an event listener for
 // entire grid so that it eliminates unecessary/extra code and simplifies functions  
 // addEventListeners as I add functions  
