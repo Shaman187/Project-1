@@ -28,4 +28,4 @@ How to run the game: open the index.html file in a modern browser
 
 ### Game: 
 
-[Play NOW!](https://shaman187.github.io/Project-1/)
+[Play it!](https://shaman187.github.io/Project-1/)
