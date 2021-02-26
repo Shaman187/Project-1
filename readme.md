@@ -7,6 +7,7 @@ The objective of the game is to be the first to form a horizontal, vertical, or 
 Wiki: https://en.wikipedia.org/wiki/Connect_Four
 
 ![Connect Four](https://github.com/Shaman187/Project-1/blob/main/images/Connect-Four.png)
+![Screenshot](Connect-Four.png)
 
 ### Brief overview of the rules
 
